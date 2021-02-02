@@ -9,6 +9,7 @@ percentage_memory_using=$(bc <<< "scale=2; $used_memory/$total_memory * 100" | a
 send_email_alert() {
     mail -s "[DEVOPS-Alerts] Server Alura Multilidae is with high memory consumption" $EMAIL_FROM<<EOF
     The server does is with high memory consumption.
+
     Actual memory usage: $(free -h | grep -i mem | awk '{ print $3 }')
     Total memory: $(free -h | grep -i mem | awk '{ print $2 }')
 
