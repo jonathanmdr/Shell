@@ -1,30 +1,26 @@
 #!/bin/bash
 
-cd ./apache-log
-
+cd "$HOME/Documentos/Courses/Shell/apache-log" || exit 1
 
 filter() {
-    cat apache.log | grep $1
+    cat apache.log | grep "$1"
 }
-
 
 to_upper() {    
-    echo $(echo $1 | awk '{ print toupper($1) }')
+    echo "$(echo "$1" | awk '{ print toupper($1) }')"
 }
 
-
-if [ -z $1 ]
-then
-    while [ -z $parameter ]
+if [ -z "$1" ]; then
+    while [ -z "$parameter" ]
     do
         read -p "Inform a parameter for filter: (GET/POST/PUT/DELETE) -> " parameter
-        parameter_upper=$(to_upper $parameter)
+        parameter_upper=$(to_upper "$parameter")
     done
 else
-    parameter_upper=$(to_upper $1)
+    parameter_upper=$(to_upper "$1")
 fi
 
-case $parameter_upper in
+case "$parameter_upper" in
     GET)
     filter GET
     ;;
